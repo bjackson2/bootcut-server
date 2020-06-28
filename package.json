@@ -1,0 +1,26 @@
+{
+  "name": "bootcut-server",
+  "version": "1.0.0",
+  "description": "Back-end for Bootcut!",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "npm run build:dev",
+    "build:dev": "nodemon 'src/server.ts' --exec 'ts-node' src/server.ts -e ts,graphql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjackson2/bootcut-server.git"
+  },
+  "keywords": [],
+  "author": "Ben Jackson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjackson2/bootcut-server/issues"
+  },
+  "homepage": "https://github.com/bjackson2/bootcut-server#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
