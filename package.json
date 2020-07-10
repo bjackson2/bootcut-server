@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "npm run build:dev",
     "build:dev": "nodemon 'src/server.ts' --exec 'ts-node' src/server.ts -e ts,graphql",
-    "lint": "npx eslint . --ext .js,.ts"
+    "lint": "npx eslint . --ext .js,.ts",
+    "db:setup": "ts-node src/db/setup.ts"
   },
   "repository": {
     "type": "git",
