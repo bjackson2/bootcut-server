@@ -6,6 +6,7 @@ import {query} from './db';
 
 dotenv.config();
 
+const port = process.env.SERVER_PORT;
 const typeDefs = gql`
   type Query {
     hello: String
@@ -24,8 +25,8 @@ const app = express();
 app.use(compression());
 server.applyMiddleware({app});
 
-app.listen({port: 3000}, async () => {
-  console.log(`Server ready at http://localhost:3000${server.graphqlPath}`);
+app.listen({port}, async () => {
+  console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`);
   const foo = await query('SELECT NOW()');
   console.log(foo);
 });
