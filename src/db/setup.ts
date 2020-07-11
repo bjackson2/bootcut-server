@@ -18,10 +18,19 @@ const setup = async () => {
     `
         CREATE TABLE board_rows (
           id serial PRIMARY KEY,
-          activity_description varchar(200)
+          row_number smallint NOT NULL,
+          activity_description varchar(255) NOT NULL DEFAULT ''
         )
       `
   );
+  for (let i = 1; i <= 12; i++) {
+    await executeStatement(
+      `
+        INSERT INTO board_rows(row_number)
+          VALUES(${i})
+      `
+    );
+  }
 };
 
 setup();
