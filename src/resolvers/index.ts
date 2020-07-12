@@ -1,5 +1,6 @@
 import snakeCase from 'lodash.snakecase';
 import {query} from '../db';
+import {GraphQLResolveInfo} from 'graphql';
 
 interface BoardRow {
   id: number;
@@ -12,14 +13,14 @@ interface UpdateBoardRowArgs {
   activityDescription: string;
 }
 
-export const fieldResolver = (
-  source: any,
-  _args: any,
-  _contextValue: any,
-  info: any
-): any => {
+export function fieldResolver<T>(
+  source: Record<string, any>,
+  _args: Record<string, any>,
+  _contextValue: Record<string, any>,
+  info: GraphQLResolveInfo
+): T {
   return source[snakeCase(info.fieldName)];
-};
+}
 
 export default {
   Query: {
@@ -45,6 +46,7 @@ export default {
         [args.rowNumber, args.activityDescription]
       );
 
+      console.log(res);
       return res.rows[0];
     },
   },
