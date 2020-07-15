@@ -5,11 +5,17 @@ import compression from 'compression';
 import cors from 'cors';
 import schema from './schema';
 import resolvers, {fieldResolver} from './resolvers';
+import context from './context';
 
 dotenv.config();
 
 const port = process.env.SERVER_PORT;
-const server = new ApolloServer({fieldResolver, typeDefs: schema, resolvers});
+const server = new ApolloServer({
+  fieldResolver,
+  typeDefs: schema,
+  resolvers,
+  context,
+});
 const app = express();
 const corsOptions = {
   origin: 'http://localhost:3000',
