@@ -7,6 +7,7 @@ export default gql`
 
   type Mutation {
     updateBoardRow(rowNumber: Int!, activityDescription: String!): BoardRow!
+    createGame(name: String): Game!
   }
 
   type BoardRow {

@@ -1,7 +1,7 @@
 import snakeCase from 'lodash.snakecase';
 import {GraphQLResolveInfo} from 'graphql';
 import {Game, BoardRows} from './types';
-import {UpdateBoardRow} from './mutations';
+import {UpdateBoardRow, CreateGame} from './mutations';
 
 export function fieldResolver<T>(
   source: Record<string, any>,
@@ -18,6 +18,7 @@ export default {
   },
   Mutation: {
     updateBoardRow: UpdateBoardRow,
+    createGame: CreateGame,
   },
   Game: {
     boardRows: BoardRows,
