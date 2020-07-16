@@ -3,10 +3,15 @@ import {gql} from 'apollo-server-express';
 export default gql`
   type Query {
     game(id: String!): Game!
+    games: [Game!]!
   }
 
   type Mutation {
-    updateBoardRow(rowNumber: Int!, activityDescription: String!): BoardRow!
+    updateBoardRow(
+      gameId: String!
+      rowNumber: Int!
+      activityDescription: String!
+    ): BoardRow!
     createGame(name: String): Game!
   }
 
