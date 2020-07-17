@@ -6,6 +6,7 @@ export const BOARD_ROW_UPDATED_TOPIC = 'board_row_updated';
 export default {
   subscribe: withFilter(
     () => db.pubsub.asyncIterator(BOARD_ROW_UPDATED_TOPIC),
-    (payload, variables) => payload.boardRowUpdated.gameId === variables.gameId
+    (payload, variables) =>
+      payload.boardRowUpdated.gameCode === variables.gameCode
   ),
 };

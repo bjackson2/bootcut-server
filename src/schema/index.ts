@@ -2,21 +2,21 @@ import {gql} from 'apollo-server-express';
 
 export default gql`
   type Query {
-    game(id: String!): Game!
+    game(code: String!): Game!
     games: [Game!]!
   }
 
   type Subscription {
-    boardRowUpdated(gameId: String!): BoardRow!
+    boardRowUpdated(gameCode: String!): BoardRow!
   }
 
   type Mutation {
     updateBoardRow(
-      gameId: String!
+      gameCode: String!
       rowNumber: Int!
       activityDescription: String!
     ): BoardRow!
-    createGame(name: String): Game!
+    createGame: Game!
   }
 
   type BoardRow {
@@ -27,8 +27,14 @@ export default gql`
 
   type Game {
     id: ID!
-    name: String
-    shortCode: String!
+    code: String!
+    status: GameStatus!
     boardRows: [BoardRow!]!
+  }
+
+  enum GameStatus {
+    CREATED
+    IN_PROGRESS
+    COMPLETED
   }
 `;

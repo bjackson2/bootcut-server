@@ -8,13 +8,8 @@ export interface Context {
   db: Record<string, any>;
 }
 
-export interface Game {
+export interface GameRow {
   id: number;
-  name: string;
-  shortCode: string;
-  boardRows: BoardRow[];
-}
-
-export interface GameArgs {
-  id: number;
+  code: string;
+  status: number;
 }

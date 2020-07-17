@@ -6,9 +6,9 @@ dotenv.config();
 const executeStatement = async (statement: string) => {
   try {
     const response = await db.query(statement);
-    console.log(response);
+    console.log(response); // eslint-disable-line no-console
   } catch (err) {
-    console.log(err);
+    console.log(err); // eslint-disable-line no-console
   }
 };
 
@@ -19,8 +19,8 @@ const setup = async () => {
     `
         CREATE TABLE games (
           id serial PRIMARY KEY,
-          short_code varchar(14) NOT NULL UNIQUE,
-          name varchar(255) NOT NULL DEFAULT ''
+          code char(5) NOT NULL UNIQUE,
+          status smallint NOT NULL DEFAULT 0
         )
       `
   );

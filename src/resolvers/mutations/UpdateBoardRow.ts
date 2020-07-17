@@ -3,7 +3,7 @@ import db from '../../db';
 import {BOARD_ROW_UPDATED_TOPIC} from '../subscriptions/BoardRowUpdated';
 
 interface UpdateBoardRowArgs {
-  gameId: string;
+  gameCode: string;
   rowNumber: number;
   activityDescription: string;
 }
@@ -19,17 +19,17 @@ export default async (
         SET activity_description = $3
         WHERE board_rows.row_number = $2
           AND board_rows.game_id = (
-            SELECT id FROM games WHERE games.short_code = $1
+            SELECT id FROM games WHERE games.code = $1
           )
         RETURNING *
     `,
-    [args.gameId, args.rowNumber, args.activityDescription]
+    [args.gameCode, args.rowNumber, args.activityDescription]
   );
 
   db.pubsub.publish(BOARD_ROW_UPDATED_TOPIC, {
     boardRowUpdated: {
       id: res.rows[0].id,
-      gameId: args.gameId,
+      gameCode: args.gameCode,
       rowNumber: res.rows[0].row_number,
       activityDescription: res.rows[0].activity_description,
     },

@@ -1,4 +1,5 @@
-import {BoardRow, Context, Game} from '../../types';
+import {BoardRow, Context} from '../../types';
+import {Game} from '../../models';
 
 export default async (
   parent: Game,

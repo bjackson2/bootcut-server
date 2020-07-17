@@ -30,5 +30,5 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 httpServer.listen(port, async () => {
-  console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`);
+  console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`); // eslint-disable-line no-console
 });

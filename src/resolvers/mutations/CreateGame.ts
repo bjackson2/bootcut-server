@@ -1,32 +1,32 @@
-import {Context, Game} from '../../types';
-import shortid from 'shortid';
-
-interface CreateGameArgs {
-  name?: string;
-}
+import {Context} from '../../types';
+import {Game} from '../../models';
+import generateGameCode from '../../utilities/generateGameCode';
 
 export default async (
   _parent: undefined,
-  args: CreateGameArgs,
+  _args: undefined,
   context: Context
 ): Promise<Game> => {
-  const shortCode = shortid.generate();
+  const code = generateGameCode();
   const res = await context.db.query(
     `
-      INSERT INTO games(name, short_code)
-        VALUES($1, $2)
+      INSERT INTO games(code)
+        VALUES($1)
         RETURNING *
     `,
-    [args.name, shortCode]
+    [code]
   );
+
+  const game = new Game(res.rows[0]);
+
   await context.db.query(
     `
       INSERT INTO board_rows(row_number, game_id)
         VALUES
         ${[...Array(12).keys()].map(idx => `(${idx + 1}, $1)`).join(', ')}
     `,
-    [res.rows[0].id]
+    [game.id]
   );
 
-  return res.rows[0];
+  return game;
 };

@@ -1,4 +1,5 @@
-import {Context, Game} from '../../types';
+import {Context, GameRow} from '../../types';
+import {Game} from '../../models';
 
 export default async (
   _parent: Record<string, any>,
@@ -6,5 +7,5 @@ export default async (
   context: Context
 ): Promise<Game[]> => {
   const res = await context.db.query('SELECT * from games');
-  return res.rows;
+  return res.rows.map((r: GameRow) => new Game(r));
 };
