@@ -6,6 +6,10 @@ export default gql`
     games: [Game!]!
   }
 
+  type Subscription {
+    boardRowUpdated(gameId: String!): BoardRow!
+  }
+
   type Mutation {
     updateBoardRow(
       gameId: String!

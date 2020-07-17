@@ -1,4 +1,6 @@
 import {BoardRow, Context} from '../../types';
+import db from '../../db';
+import {BOARD_ROW_UPDATED_TOPIC} from '../subscriptions/BoardRowUpdated';
 
 interface UpdateBoardRowArgs {
   gameId: string;
@@ -23,6 +25,15 @@ export default async (
     `,
     [args.gameId, args.rowNumber, args.activityDescription]
   );
+
+  db.pubsub.publish(BOARD_ROW_UPDATED_TOPIC, {
+    boardRowUpdated: {
+      id: res.rows[0].id,
+      gameId: args.gameId,
+      rowNumber: res.rows[0].row_number,
+      activityDescription: res.rows[0].activity_description,
+    },
+  });
 
   return res.rows[0];
 };

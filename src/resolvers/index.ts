@@ -3,6 +3,7 @@ import {GraphQLResolveInfo} from 'graphql';
 import {Game, BoardRows} from './types';
 import {UpdateBoardRow, CreateGame} from './mutations';
 import Games from './types/Games';
+import {BoardRowUpdated} from './subscriptions';
 
 export function fieldResolver<T>(
   source: Record<string, any>,
@@ -17,6 +18,9 @@ export default {
   Query: {
     game: Game,
     games: Games,
+  },
+  Subscription: {
+    boardRowUpdated: BoardRowUpdated,
   },
   Mutation: {
     updateBoardRow: UpdateBoardRow,

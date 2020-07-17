@@ -6,6 +6,7 @@ import cors from 'cors';
 import schema from './schema';
 import resolvers, {fieldResolver} from './resolvers';
 import context from './context';
+import http from 'http';
 
 dotenv.config();
 
@@ -18,13 +19,16 @@ const server = new ApolloServer({
 });
 const app = express();
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: ['http://192.168.1.31:3000', 'http://localhost:3000'],
 };
 
 app.use(compression());
 app.use(cors(corsOptions));
 server.applyMiddleware({app});
 
-app.listen({port}, async () => {
+const httpServer = http.createServer(app);
+server.installSubscriptionHandlers(httpServer);
+
+httpServer.listen(port, async () => {
   console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`);
 });
