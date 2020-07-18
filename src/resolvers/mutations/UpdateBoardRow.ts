@@ -1,6 +1,7 @@
-import {BoardRow, Context} from '../../types';
+import {Context} from '../../types';
 import db from '../../db';
 import {BOARD_ROW_UPDATED_TOPIC} from '../subscriptions/BoardRowUpdated';
+import {BoardRow} from '../../models';
 
 interface UpdateBoardRowArgs {
   gameCode: string;
@@ -26,14 +27,16 @@ export default async (
     [args.gameCode, args.rowNumber, args.activityDescription]
   );
 
+  const boardRow = new BoardRow(res.rows[0]);
+
   db.pubsub.publish(BOARD_ROW_UPDATED_TOPIC, {
     boardRowUpdated: {
-      id: res.rows[0].id,
+      id: boardRow.id,
       gameCode: args.gameCode,
-      rowNumber: res.rows[0].row_number,
-      activityDescription: res.rows[0].activity_description,
+      rowNumber: boardRow.rowNumber,
+      activityDescription: boardRow.activityDescription,
     },
   });
 
-  return res.rows[0];
+  return boardRow;
 };
