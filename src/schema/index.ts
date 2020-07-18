@@ -17,6 +17,11 @@ export default gql`
       activityDescription: String!
     ): BoardRow!
     createGame: Game!
+    createGameParticipant(
+      gameCode: String!
+      name: String!
+      avatarUrl: String!
+    ): GameParticipant
   }
 
   type BoardRow {
@@ -30,6 +35,14 @@ export default gql`
     code: String!
     status: GameStatus!
     boardRows: [BoardRow!]!
+    gameParticipants: [GameParticipant!]!
+  }
+
+  type GameParticipant {
+    id: ID!
+    name: String!
+    avatarUrl: String!
+    breakawayCount: Int!
   }
 
   enum GameStatus {

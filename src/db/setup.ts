@@ -14,6 +14,7 @@ const executeStatement = async (statement: string) => {
 
 const setup = async () => {
   await executeStatement('DROP TABLE IF EXISTS board_rows');
+  await executeStatement('DROP TABLE IF EXISTS game_participants');
   await executeStatement('DROP TABLE IF EXISTS games');
   await executeStatement(
     `
@@ -31,6 +32,17 @@ const setup = async () => {
           game_id integer REFERENCES games (id),
           row_number smallint NOT NULL,
           activity_description varchar(255) NOT NULL DEFAULT ''
+        )
+      `
+  );
+  await executeStatement(
+    `
+        CREATE TABLE game_participants (
+          id serial PRIMARY KEY,
+          game_id integer REFERENCES games (id),
+          name varchar(50) NOT NULL,
+          avatar_url varchar(250) NOT NULL,
+          breakaway_count smallint NOT NULL DEFAULT 6
         )
       `
   );

@@ -4,7 +4,7 @@ import {ApolloServer} from 'apollo-server-express';
 import compression from 'compression';
 import cors from 'cors';
 import schema from './schema';
-import resolvers, {fieldResolver} from './resolvers';
+import resolvers from './resolvers';
 import context from './context';
 import http from 'http';
 
@@ -12,7 +12,6 @@ dotenv.config();
 
 const port = process.env.SERVER_PORT;
 const server = new ApolloServer({
-  fieldResolver,
   typeDefs: schema,
   resolvers,
   context,

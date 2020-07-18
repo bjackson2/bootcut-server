@@ -1,5 +1,5 @@
-import {BoardRow, Context} from '../../types';
-import {Game} from '../../models';
+import {Context, BoardRowRow} from '../../types';
+import {Game, BoardRow} from '../../models';
 
 export default async (
   parent: Game,
@@ -15,5 +15,5 @@ export default async (
     `,
     [parent.id]
   );
-  return res.rows;
+  return res.rows.map((row: BoardRowRow) => new BoardRow(row));
 };
