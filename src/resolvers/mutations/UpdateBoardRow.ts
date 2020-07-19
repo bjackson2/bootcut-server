@@ -31,10 +31,8 @@ export default async (
 
   db.pubsub.publish(BOARD_ROW_UPDATED_TOPIC, {
     boardRowUpdated: {
-      id: boardRow.id,
       gameCode: args.gameCode,
-      rowNumber: boardRow.rowNumber,
-      activityDescription: boardRow.activityDescription,
+      ...boardRow,
     },
   });
 

@@ -21,7 +21,8 @@ const setup = async () => {
         CREATE TABLE games (
           id serial PRIMARY KEY,
           code char(5) NOT NULL UNIQUE,
-          status smallint NOT NULL DEFAULT 0
+          status smallint NOT NULL DEFAULT 0,
+          duration smallint
         )
       `
   );

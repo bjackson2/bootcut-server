@@ -12,10 +12,12 @@ export default class Game {
   id: number;
   code: string;
   status: string;
+  duration: number | null;
 
   constructor(gameRow: GameRow) {
     this.id = gameRow.id;
     this.code = gameRow.code;
     this.status = assignStatus(gameRow.status);
+    this.duration = gameRow.duration;
   }
 }

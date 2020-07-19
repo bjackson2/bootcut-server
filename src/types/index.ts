@@ -12,6 +12,7 @@ export interface GameRow {
   id: number;
   code: string;
   status: number;
+  duration: number | null;
 }
 
 export interface GameParticipantRow {

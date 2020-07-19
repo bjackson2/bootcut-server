@@ -1,5 +1,7 @@
 import {Context} from '../../types';
 import {GameParticipant} from '../../models';
+import db from '../../db';
+import {GAME_PARTICIPANT_CREATED_TOPIC} from '../subscriptions/GameParticipantCreated';
 
 interface CreateGameParticipantArgs {
   gameCode: string;
@@ -25,5 +27,14 @@ export default async (
     [args.gameCode, args.name, args.avatarUrl]
   );
 
-  return new GameParticipant(res.rows[0]);
+  const gameParticipant = new GameParticipant(res.rows[0]);
+
+  db.pubsub.publish(GAME_PARTICIPANT_CREATED_TOPIC, {
+    gameParticipantCreated: {
+      gameCode: args.gameCode,
+      ...gameParticipant,
+    },
+  });
+
+  return gameParticipant;
 };

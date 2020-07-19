@@ -1,6 +1,11 @@
 import {Game, Games, BoardRows, GameParticipants} from './types';
-import {UpdateBoardRow, CreateGame, CreateGameParticipant} from './mutations';
-import {BoardRowUpdated} from './subscriptions';
+import {
+  UpdateBoardRow,
+  CreateGame,
+  CreateGameParticipant,
+  UpdateGame,
+} from './mutations';
+import {BoardRowUpdated, GameParticipantCreated} from './subscriptions';
 
 export default {
   Query: {
@@ -9,11 +14,13 @@ export default {
   },
   Subscription: {
     boardRowUpdated: BoardRowUpdated,
+    gameParticipantCreated: GameParticipantCreated,
   },
   Mutation: {
     createGame: CreateGame,
     createGameParticipant: CreateGameParticipant,
     updateBoardRow: UpdateBoardRow,
+    updateGame: UpdateGame,
   },
   Game: {
     boardRows: BoardRows,
