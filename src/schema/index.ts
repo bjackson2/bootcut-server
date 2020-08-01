@@ -23,7 +23,7 @@ export default gql`
       rowNumber: Int!
       activityDescription: String!
     ): BoardRow!
-    updateGame(code: String!, duration: Int): Game!
+    updateGameDuration(code: String!, duration: Int): Game!
   }
 
   type BoardRow {

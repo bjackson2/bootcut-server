@@ -3,7 +3,7 @@ import {
   UpdateBoardRow,
   CreateGame,
   CreateGameParticipant,
-  UpdateGame,
+  UpdateGameDuration,
 } from './mutations';
 import {BoardRowUpdated, GameParticipantCreated} from './subscriptions';
 
@@ -20,7 +20,7 @@ export default {
     createGame: CreateGame,
     createGameParticipant: CreateGameParticipant,
     updateBoardRow: UpdateBoardRow,
-    updateGame: UpdateGame,
+    updateGameDuration: UpdateGameDuration,
   },
   Game: {
     boardRows: BoardRows,

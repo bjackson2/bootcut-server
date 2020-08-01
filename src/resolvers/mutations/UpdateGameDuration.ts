@@ -1,14 +1,14 @@
 import {Context} from '../../types';
 import {Game} from '../../models';
 
-interface UpdateGameArgs {
+interface UpdateGameDurationArgs {
   code: string;
   duration?: number;
 }
 
 export default async (
   _parent: undefined,
-  args: UpdateGameArgs,
+  args: UpdateGameDurationArgs,
   context: Context
 ): Promise<Game> => {
   const res = await context.db.query(
