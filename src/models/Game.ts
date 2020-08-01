@@ -13,11 +13,13 @@ export default class Game {
   code: string;
   status: string;
   duration: number | null;
+  turnOrder: number[] | null;
 
   constructor(gameRow: GameRow) {
     this.id = gameRow.id;
     this.code = gameRow.code;
     this.status = assignStatus(gameRow.status);
     this.duration = gameRow.duration;
+    this.turnOrder = gameRow.turn_order;
   }
 }

@@ -5,7 +5,11 @@ import {
   CreateGameParticipant,
   UpdateGameDuration,
 } from './mutations';
-import {BoardRowUpdated, GameParticipantCreated} from './subscriptions';
+import {
+  BoardRowUpdated,
+  GameParticipantCreated,
+  TurnOrderUpdated,
+} from './subscriptions';
 
 export default {
   Query: {
@@ -15,6 +19,7 @@ export default {
   Subscription: {
     boardRowUpdated: BoardRowUpdated,
     gameParticipantCreated: GameParticipantCreated,
+    turnOrderUpdated: TurnOrderUpdated,
   },
   Mutation: {
     createGame: CreateGame,

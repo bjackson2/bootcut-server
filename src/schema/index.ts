@@ -9,6 +9,7 @@ export default gql`
   type Subscription {
     boardRowUpdated(gameCode: String!): BoardRow!
     gameParticipantCreated(gameCode: String!): GameParticipant!
+    turnOrderUpdated(gameCode: String!): Game!
   }
 
   type Mutation {
@@ -37,6 +38,7 @@ export default gql`
     code: String!
     status: GameStatus!
     duration: Int
+    turnOrder: [Int!]
     boardRows: [BoardRow!]!
     gameParticipants: [GameParticipant!]!
   }

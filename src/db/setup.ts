@@ -21,8 +21,9 @@ const setup = async () => {
         CREATE TABLE games (
           id serial PRIMARY KEY,
           code char(5) NOT NULL UNIQUE,
+          duration smallint,
           status smallint NOT NULL DEFAULT 0,
-          duration smallint
+          turn_order smallint[]
         )
       `
   );
@@ -47,6 +48,7 @@ const setup = async () => {
         )
       `
   );
+  console.log('Done'); // eslint-disable-line no-console
 };
 
 setup();

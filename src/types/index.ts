@@ -13,6 +13,7 @@ export interface GameRow {
   code: string;
   status: number;
   duration: number | null;
+  turn_order: number[] | null;
 }
 
 export interface GameParticipantRow {
