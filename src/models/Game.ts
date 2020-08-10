@@ -1,17 +1,21 @@
 import {GameRow} from '../types';
 
-const STATUS_TYPES: Record<string, string> = {
+const STATUS_TYPES: Record<string, GameStatusType> = {
   0: 'CREATED',
   1: 'IN_PROGRESS',
   2: 'COMPLETED',
 };
 
-const assignStatus = (status: number): string => STATUS_TYPES[status];
+export type GameStatusType = 'CREATED' | 'IN_PROGRESS' | 'COMPLETED';
+
+const assignStatus = (status: number): GameStatusType => STATUS_TYPES[status];
+export const statusEnumValue = (status: GameStatusType): number =>
+  Number(Object.keys(STATUS_TYPES).find(key => STATUS_TYPES[key] == status));
 
 export default class Game {
   id: number;
   code: string;
-  status: string;
+  status: GameStatusType;
   duration: number | null;
   turnOrder: number[] | null;
 

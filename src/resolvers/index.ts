@@ -4,11 +4,13 @@ import {
   CreateGame,
   CreateGameParticipant,
   UpdateGameDuration,
+  UpdateGameStatus,
 } from './mutations';
 import {
   BoardRowUpdated,
   GameParticipantCreated,
   TurnOrderUpdated,
+  GameStatusUpdated,
 } from './subscriptions';
 
 export default {
@@ -19,6 +21,7 @@ export default {
   Subscription: {
     boardRowUpdated: BoardRowUpdated,
     gameParticipantCreated: GameParticipantCreated,
+    gameStatusUpdated: GameStatusUpdated,
     turnOrderUpdated: TurnOrderUpdated,
   },
   Mutation: {
@@ -26,6 +29,7 @@ export default {
     createGameParticipant: CreateGameParticipant,
     updateBoardRow: UpdateBoardRow,
     updateGameDuration: UpdateGameDuration,
+    updateGameStatus: UpdateGameStatus,
   },
   Game: {
     boardRows: BoardRows,
